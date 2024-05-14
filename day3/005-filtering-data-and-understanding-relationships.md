@@ -1,7 +1,3 @@
-### Detailed Tutorial on Relationships in Neo4j
-
-In Neo4j, relationships are a fundamental part of the graph model. They connect nodes and define how data in the graph is related. Relationships are directed, meaning they have a start and an end node, and they can have properties, similar to nodes.
-
 ### Types of Relationships in Neo4j
 
 While Neo4j doesn't have predefined types of relationships, you can create and name relationships based on the domain model of your application. Relationships are defined by their type, which is a label you assign. Here are common relationship types and how they might be used in the Northwind database:
