@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  neo4j:
+    build: .
+    restart: always
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    volumes:
+      - /home/ubuntu/clusterdata/data1:/data
+    environment:
+      NEO4J_AUTH: neo4j/test1234567
