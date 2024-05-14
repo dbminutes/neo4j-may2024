@@ -61,7 +61,13 @@ After installation, consider the following:
 - **Backup**: Plan regular backups to avoid data loss.
 - **Monitoring**: Use Neo4j's built-in tools or third-party solutions to monitor database performance and health.
 
+----------
 
+If you do not have docker installed on your machine, you can do so by using following command on Ubuntu
+
+```bash
+sudo snap install docker
+```
 --------------------------
 
 Here's a command to run a Docker container with the Neo4j database version 5.19.0, setting it to restart automatically and publishing ports 7474 and 7687 for HTTP and Bolt connections, respectively:
