@@ -52,7 +52,7 @@ RETURN p
 
 **Example**: Find all orders placed by customers.
 ```cypher
-MATCH (c:Customer)-[r:PLACED]->(o:Order)
+MATCH (c:Customer)-[r:PURCHASED]->(o:Order)
 RETURN c, r, o
 ```
 
@@ -66,7 +66,7 @@ RETURN e
 
 **Example**: Find customers and their orders.
 ```cypher
-MATCH (c:Customer)-[:PLACED]->(o:Order)
+MATCH (c:Customer)-[:PURCHASED]->(o:Order)
 RETURN c.customerID, c.contactName, o.orderID
 ```
 
@@ -74,7 +74,7 @@ RETURN c.customerID, c.contactName, o.orderID
 
 **Example**: Find customers, their orders, and the employees who handled those orders.
 ```cypher
-MATCH (c:Customer)-[:PLACED]->(o:Order)<-[:HANDLED]-(e:Employee)
+MATCH (c:Customer)-[:PURCHASED]->(o:Order)<-[:HANDLED]-(e:Employee)
 RETURN c.contactName, o.orderID, e.lastName
 ```
 
@@ -89,7 +89,7 @@ RETURN p.productName, s.companyName
 **Example**: Find customers and optionally their orders (including customers who have not placed any orders).
 ```cypher
 MATCH (c:Customer)
-OPTIONAL MATCH (c)-[:PLACED]->(o:Order)
+OPTIONAL MATCH (c)-[:PURCHASED]->(o:Order)
 RETURN c.contactName, o.orderID
 ```
 
@@ -97,7 +97,7 @@ RETURN c.contactName, o.orderID
 
 **Example**: Find customers who placed orders after January 1, 2021.
 ```cypher
-MATCH (c:Customer)-[:PLACED]->(o:Order)
+MATCH (c:Customer)-[:PURCHASED]->(o:Order)
 WHERE o.orderDate > date('2021-01-01')
 RETURN c.contactName, o.orderID
 ```
@@ -113,13 +113,13 @@ RETURN p.productName, p.price
 
 **Example**: Count the number of orders each customer has placed.
 ```cypher
-MATCH (c:Customer)-[:PLACED]->(o:Order)
+MATCH (c:Customer)-[:PURCHASED]->(o:Order)
 RETURN c.contactName, count(o) AS numberOfOrders
 ```
 
 **Example**: Find the total value of orders placed by each customer.
 ```cypher
-MATCH (c:Customer)-[:PLACED]->(o:Order)-[:CONTAINS]->(p:Product)
+MATCH (c:Customer)-[:PURCHASED]->(o:Order)-[:CONTAINS]->(p:Product)
 RETURN c.contactName, sum(p.price) AS totalValue
 ```
 
@@ -127,7 +127,7 @@ RETURN c.contactName, sum(p.price) AS totalValue
 
 **Example**: Find customers who have ordered products supplied by a specific supplier.
 ```cypher
-MATCH (c:Customer)-[:PLACED]->(o:Order)-[:CONTAINS]->(p:Product)<-[:SUPPLIES]-(s:Supplier {companyName: 'Exotic Liquids'})
+MATCH (c:Customer)-[:PURCHASED]->(o:Order)-[:CONTAINS]->(p:Product)<-[:SUPPLIES]-(s:Supplier {companyName: 'Exotic Liquids'})
 RETURN c.contactName, p.productName, s.companyName
 ```
 
@@ -175,7 +175,7 @@ RETURN c
 
 **Example**: Find the top 5 customers by the number of orders placed.
 ```cypher
-MATCH (c:Customer)-[:PLACED]->(o:Order)
+MATCH (c:Customer)-[:PURCHASED]->(o:Order)
 WITH c, count(o) AS numberOfOrders
 ORDER BY numberOfOrders DESC
 LIMIT 5
@@ -186,6 +186,6 @@ RETURN c.contactName, numberOfOrders
 
 **Example**: Find all paths from customers to products they ordered.
 ```cypher
-MATCH path = (c:Customer)-[:PLACED]->(o:Order)-[:CONTAINS]->(p:Product)
+MATCH path = (c:Customer)-[:PURCHASED]->(o:Order)-[:CONTAINS]->(p:Product)
 RETURN path
 ```
