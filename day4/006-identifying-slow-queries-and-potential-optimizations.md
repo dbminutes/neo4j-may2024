@@ -17,8 +17,8 @@ Neo4j can log slow queries automatically. By configuring the query logging setti
 Edit the `neo4j.conf` file to enable query logging and set the threshold for slow queries.
 
 ```plaintext
-dbms.logs.query.enabled=true
-dbms.logs.query.threshold=1000ms
+db.logs.query.enabled=INFO
+db.logs.query.threshold=1000ms
 ```
 
 - `dbms.logs.query.enabled`: Enables query logging.
