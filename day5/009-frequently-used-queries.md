@@ -409,5 +409,13 @@ This query will return nodes that have all the specified properties (`email`, `p
 
 
 
+### Query for Pivoting
+
+```cypher
+
+```
+
+
+
 
 
